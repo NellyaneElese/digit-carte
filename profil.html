@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>DigitCarte</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div id="profil" class="profil">
+            <img id="photo" alt="Photo de profil" style="width: 100px; height: 100px;">
+            <br>
+            <p>Nom :<span id="nom"></span></p>
+            <p>Postnom : <span  id="postnom"></span></p>
+            <p >Prenom :  <span id="prenom"></span></p>
+            <p>Entreprise :<span  id="firm"></span></p>
+            <p>Poste : <span  id="job"></span></p>
+            <p>Téléphone : <span id="tel"></span></p>
+            <p>E-mail : <span  id="mail"></span></p>
+            <p>Mot de passe : <span id="password"></span></p>
+
+            <button id="editBtn">Modifier</button>
+
+            <div id="editForm" style="display: none;">
+                <input type="text" id="editnom">
+                <input type="text" id="editpostnom">
+                <input type="text" id="editprenom">
+                <input type="text" id="editfirm">
+                <input type="text" id="editjob">
+                <input type="tel"  id="edittel">
+                <input type="mail" id="editmail">
+                <input type="password" id="editpassword">
+                <input type="file" id="editphoto" accept="image/*"/>
+                <button id="saveChanges">Enregistrer</button>
+
+            </div>
+        </div>
+        <script src="profil.js"></script>
+    </body>
+</html>

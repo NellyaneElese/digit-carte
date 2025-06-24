@@ -1,0 +1,103 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family:  'Times New Roman', Times, serif;
+}
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: rgb(211, 209, 228);
+    background-image: url("images/background.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+   backdrop-filter: blur(8px);
+}
+.enregistrement {
+    flex-direction: column;
+    position: fixed;
+    display: flex;
+    background-color:  rgba(0, 0, 0, 0.8);
+    padding: 50px 70px;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+    color: aliceblue;
+}
+.bouton {
+    padding: 2px;
+    padding: 2px 12px;
+    object-fit: contain;
+    border-radius: 20px;
+    border: 2px solid #333;
+    background-color: rgb(10, 10, 15);
+    text-align: center;
+}
+.enregistrement span {
+    color: aliceblue;
+}
+.connexion {
+    background-color:  rgba(0, 0, 0, 0.8);
+    padding: 50px 70px;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+    color: aliceblue;
+}
+.barr-menu {
+    width: 250px;
+    height: 100vh;
+    background-color: aliceblue;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 100;
+}
+.Logo {
+    padding: 20Px;
+    text-align: center;
+    border-bottom: 1px solid #444;
+    width: 400px;
+    height: 180px;
+}
+.Logo img {
+    max-width: 100px;
+}
+.Menu {
+    display: flex;
+    flex-direction: column;
+    padding: 90px 90px;
+}
+.Menu a {
+    padding: 15px 20px;
+    text-decoration: none;
+    color: white;
+}
+.Menu a:hover {
+    background-color: #333;
+    cursor: pointer;
+}
+
+.menu-box {
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 40px 30px;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+    text-align: center;
+}
+.profil {
+    flex-direction: column;
+    position: fixed;
+    display: flex;
+    background-color:  rgba(0, 0, 0, 0.8);
+    padding: 50px 70px;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+    color: aliceblue;
+    border-bottom: 1px solid #656565;
+}
+
