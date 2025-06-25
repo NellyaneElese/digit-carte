@@ -1,9 +1,108 @@
 <!DOCTYPE html>
 <html lang="fr">
 
-<head>
-    <meta charset="UTF-8">
-    <title>DigitCarte</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <title>DigitCarte</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+         <link rel="stylesheet" href="style.css">
+        <style>
+            body {
+                font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+                background: linear-gradient(to bottom right, #f0f2f5, #dbe9f4);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                margin: 0;
+            }
+            .carte {
+                background: #fff;
+                border-radius: 16px;
+                box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+                padding: 30px 25px;
+                width: 320px;
+                text-align: center;
+                transition: 0.3s ease;
+            }
+            .carte:hover {
+                transform: scale(1.03);
+            
+            }
+            .carte img {
+                width: 100px;
+                height: 100px;
+                object-fit: cover;
+                border-radius: 50%;
+                margin-bottom: 15px;
+                border: 3px solid #4a90e2;
+            }
+            .carte h2 {
+                margin: 10px 0 5px;
+                font-size: 20px;
+                color: #333;
+            }
+            .carte p.job {
+                color: #4a90e2;
+                margin: 4px 0;
+                font-weight: 500;
+            }
+            .carte p.info {
+                color: #555;
+                font-size: 14px;
+                margin: 6px 0;
+            }
+            .carte i {
+                margin-right: 6px;
+                color: #4a90e2;
+            }
+            .qr {
+                margin-top: 20px;
+            }
+            canvas {
+                border-radius: 10px;
+            }
+        </style>
+    </head>
+    <body>
+        <a href="index.html" class="retour"> <i class="fas fa-arrow-left"></i> Retour</a>
+        <div class="carte">
+            <img id="photo"  alt="photo de profil">
+            <h2 id="nomcomplet"></h2>
+            <p class="job" id="poste"></p>
+            <p class="info"><i class="fas fa-envelope"></i> <span id="email"></span></p>
+            <p class="info"><i class="fas fa-phone"></i> <span id="tel"></span></p>
+            <div class="qr">
+                <canvas id="qrCode"></canvas>
+            </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+        <script>
+            const data = JSON.parse(localStorage.getItem("userData"));
+            if (data) {
+                document.getElementById("photo").src = data.photo || "default.png";
+                document.getElementById("nomcomplet").innerText = '${data.nom} ${data.postnom} ${data.prenom}';
+                document.getElementById("poste").innerText = '${data.job} chez ${data.firm}';
+                document.getElementById("emai").innerText = data.mail;
+                document.getElementById("tel").innerText = data.tel;
+                const qrText = 'Nom: ${data.nom} ${data.postnom} ${data.prenom}\nPoste: ${data.job}\nEntreprise: ${data.firm}\nEmail: ${data.mail}\nTéléphone: ${data.tel}';
+                QRCode.toCanvas(document.getElementById('qrCode'), qrText, {
+                    width: 140,
+                    margin: 1,
+                    color: {
+                        dark: "#000000",
+                        light: "#ffffff"
+                    }
+                },
+                function (error) {
+                    if (error) console.error(error);
+                });
+            }
+            else {
+                alert("Aucune donnée utilisateur trouvée.");
+            }
+        </script>
+
+    </body>
+
+</html>
