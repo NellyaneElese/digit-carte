@@ -37,21 +37,20 @@
             </div>
         </div>
         <script >
-            document.querySelector('#registre').addEventListener('submit', function(e) {
+            document.querySelector('#profil').addEventListener('submit', function(e) {
                     e.preventDefault();
                 const userData = { 
                         Nom: document.querySelector('#nom').value,
                         Postnom: document.querySelector('#postnom').value,
-                        Prenom: document.querySelector('#postnom').value,
+                        Prenom: document.querySelector('#prenom').value,
                         Entreprise: document.querySelector('#firm').value,
                         poste: document.querySelector('#job').value,
                         Téléphone: document.querySelector('#tel').value,
                         mail: document.querySelector('#mail').value,
                         Motdepasse: document.querySelector('#password').value,
-                        Photo: document.querySelector('#password').value,
+                        Photo: document.querySelector('#photo').value,
                     };
-                localStorage.setItem('Utilisateur', JSON.stringify(userData));
-                window.location.href = 'profil.html';    
+                localStorage.setItem('Utilisateur', JSON.stringify(userData));    
                 if (file) {
                     reader.readAsDataURL(file);
                 }

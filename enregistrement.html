@@ -66,13 +66,9 @@
                         document.getElementById("mail").innerText ="Email :" + userData.mail
                         document.getElementById("password").innerText ="Mot de passe :" +userData.password;
                     }
-                } 
-                // Vérifier si les données de l'utilisateur sont stockées dans localStorage
-                if (!localStorage.getItem("userData")) {
-                    // Si non, rediriger vers la page d'accueil
-                    alert("Aucune donnée utilisateur trouvée. Veuillez vous connecter.");
-                    window.location.href = "souscription.html";
+                     window.location.href = 'profil.html';
                 }
+                    
                 document.getElementById("editBtn").addEventListener("click", () => {
                     const userData = JSON.parse(localStorage.getItem("userData"));
                     if (!userData) return;
@@ -125,6 +121,7 @@
                     }
                 });
                 window.onload = loadProfile;
+                window.location.href = 'profil.html';
             </script>
     </body>
 
