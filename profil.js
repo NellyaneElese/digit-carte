@@ -1,6 +1,5 @@
-function loadProfile() {
-    const userData = JSON.parse(localStorage.getItem("userData"));
-    if (!userData)return;
+const userData = JSON.parse(localStorage.getItem("Utilisateur"));
+if (userData){
     
     document.getElementById("photo").src=userData.photo || "";
     document.getElementById("nom").innerText = "Nom :" + userData.nom;

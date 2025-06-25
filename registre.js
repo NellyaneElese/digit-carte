@@ -1,22 +1,18 @@
-document.querySelector('#profil').addEventListener('submit', function(e) {
+document.querySelector('#registre').addEventListener('submit', function(e) {
     e.preventDefault();
-const reader = new FileReader();
-const file = document.querySelector('#photo-profil').files[0];
-reader.onload = function () {   
-    const userData = { 
-        Nom: document.querySelector('#nom').Value,
-        Postnom: document.querySelector('#postnom').Value,
+const userData = { 
+        Nom: document.querySelector('#nom').value,
+        Postnom: document.querySelector('#postnom').value,
         Prenom: document.querySelector('#postnom').value,
         Entreprise: document.querySelector('#firm').value,
         poste: document.querySelector('#job').value,
         Téléphone: document.querySelector('#tel').value,
         mail: document.querySelector('#mail').value,
         Motdepasse: document.querySelector('#password').value,
-        Photo: reader.result 
+        Photo: document.querySelector('#password').value,
     };
-    localStorage.setItem('userData', JSON.stringify(userData));
-    window.location.href = 'profil.html';
-};    
+localStorage.setItem('Utilisateur', JSON.stringify(userData));
+window.location.href = 'profil.html';    
 if (file) {
     reader.readAsDataURL(file);
 }
