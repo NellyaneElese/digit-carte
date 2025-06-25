@@ -36,6 +36,46 @@
 
             </div>
         </div>
-        <script src="profil.js"></script>
+        <script >
+            document.querySelector('#registre').addEventListener('submit', function(e) {
+                    e.preventDefault();
+                const userData = { 
+                        Nom: document.querySelector('#nom').value,
+                        Postnom: document.querySelector('#postnom').value,
+                        Prenom: document.querySelector('#postnom').value,
+                        Entreprise: document.querySelector('#firm').value,
+                        poste: document.querySelector('#job').value,
+                        Téléphone: document.querySelector('#tel').value,
+                        mail: document.querySelector('#mail').value,
+                        Motdepasse: document.querySelector('#password').value,
+                        Photo: document.querySelector('#password').value,
+                    };
+                localStorage.setItem('Utilisateur', JSON.stringify(userData));
+                window.location.href = 'profil.html';    
+                if (file) {
+                    reader.readAsDataURL(file);
+                }
+                else {
+                    alert('Veuillez sélectionner une photo.');
+                }
+                });
+            const userData = JSON.parse(localStorage.getItem('Utilisateur'));
+            if (userData) {
+                document.querySelector('#nom').textContent = userData.Nom;
+                document.querySelector('#postnom').textContent = userData.Postnom;
+                document.querySelector('#prenom').textContent = userData.Prenom;
+                document.querySelector('#firm').textContent = userData.Entreprise;
+                document.querySelector('#job').textContent = userData.poste;
+                document.querySelector('#tel').textContent = userData.Téléphone;
+                document.querySelector('#mail').textContent = userData.mail;
+                document.querySelector('#password').textContent = userData.Motdepasse;
+
+                const photoElement = document.querySelector('#photo');
+                if (userData.Photo) {
+                    photoElement.src = userData.Photo;
+                }
+            }
+
+        </script>
     </body>
 </html>
