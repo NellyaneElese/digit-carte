@@ -7,28 +7,48 @@
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <div class="connexion">
-            <div class="login">
+            <div class="login" id="connexion">
                 <h2>Connexion</h2>
                 <div class="inputbox">
                     <i class="fa-regular fa-envelope"></i>
                     <span>email</span> <br>
-                     <input type="email" required= "required" placeholder="Alicekaya@gmail?com">
+                     <input type="email" id="email" required= "required" placeholder="Alicekaya@gmail?com">
                 </div>
                 <div class="inputbox">
                     <i class="fa-solid fa-lock"></i>
                     <span>Entrez votre mot de passe</span> <br>
-                     <input type="password" required= "required" placeholder="Alice@243">
+                     <input type="password" id="password" required= "required" placeholder="Alice@243">
                 </div>
-                <div class="bouton">
-                    <button type="submit">se connecter</button>
-                </div>
+                <button type="submit">se connecter</button>
                <p> vous n'avez pas encore un compte?<a href="enregistrement.html" class="form signup">créer un compte</a></p>
             </div>
-                </div>
-            </div>
-        </div>
-     </body>  
+        <script>
+            //const form = document.getElementById('connexion');
+            //form.addEventListener('submit', (event) => {
+                //event.preventDefault();
+                //const email = form.querySelector('input[type="email"]').value;
+                //const password = form.querySelector('input[type="password"]').value;
+                //console.log(`Email: ${email}, Password: ${password}`);
+           // });
+
+            document.getElementById('connexion').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const email = document.getElementById("email").value.trim();
+                const password = document.getElementById("password").value;
+                const userData = JSON.parse(localStorage.getItem("userData"));
+
+                if (userData && userData.email === email && userData.password === password) {
+                    // Simulate a successful login
+                    alert(`Connexion réussie avec l'email: ${email}`);
+                    // Redirect to the profile page or dashboard
+                    window.location.href = 'profil.html';
+                } else {
+                    alert('Identifiants invalides.');
+                }
+            });
+        </script>
+     </body>
+
 
 
 

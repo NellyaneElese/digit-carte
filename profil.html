@@ -17,64 +17,96 @@
             <p>Entreprise :<span  id="firm"></span></p>
             <p>Poste : <span  id="job"></span></p>
             <p>Téléphone : <span id="tel"></span></p>
-            <p>E-mail : <span  id="mail"></span></p>
+            <p>E-mail : <span  id="email"></span></p>
             <p>Mot de passe : <span id="password"></span></p>
 
             <button id="editBtn">Modifier</button>
-
-            <div id="editForm" style="display: none;">
-                <input type="text" id="editnom">
-                <input type="text" id="editpostnom">
-                <input type="text" id="editprenom">
-                <input type="text" id="editfirm">
-                <input type="text" id="editjob">
-                <input type="tel"  id="edittel">
-                <input type="mail" id="editmail">
-                <input type="password" id="editpassword">
-                <input type="file" id="editphoto" accept="image/*"/>
-                <button id="saveChanges">Enregistrer</button>
-
-            </div>
+        </div>
+        <div id="editBtn" style="display: none;">
+            <p>Nom :<input type="text" id="editnom"></p>
+            <p>Postnom :<input type="text" id="editpostnom"></p>
+            <p >Prenom : <input type="text" id="editprenom"></p>
+            <p>Entreprise :<input type="text" id="editfirm"></p>
+            <p>Poste : <input type="text" id="editjob"></p>
+            <p>Téléphone :<input type="tel"  id="edittel"></p>
+            <p>E-mail :<input type="mail" id="editmail"></p>
+            <p>Mot de passe :<input type="password" id="editpassword"></p>
+            <input type="file" id="editphoto" accept="image/*"/>
+            <button id="saveChanges">Enregistrer</button>
         </div>
         <script >
-            document.querySelector('#profil').addEventListener('submit', function(e) {
-                    e.preventDefault();
-                const userData = { 
-                        Nom: document.querySelector('#nom').value,
-                        Postnom: document.querySelector('#postnom').value,
-                        Prenom: document.querySelector('#prenom').value,
-                        Entreprise: document.querySelector('#firm').value,
-                        poste: document.querySelector('#job').value,
-                        Téléphone: document.querySelector('#tel').value,
-                        mail: document.querySelector('#mail').value,
-                        Motdepasse: document.querySelector('#password').value,
-                        Photo: document.querySelector('#photo').value,
+            function loadProfile() {
+                const userData = JSON.parse(localStorage.getItem("userData"));
+                if (!userData) return;
+                    document.getElementById("photo").src = userData.photo || "";
+                    document.getElementById("nom").innerText = "Nom :" + userData.nom;
+                    document.getElementById("postnom").innerText = "Postnom :" + userData.postnom;
+                    document.getElementById("prenom").innerText = "Prenom :" + userData.prenom; 
+                    document.getElementById("firm").innerText = "Entreprise :" + userData.firm;
+                    document.getElementById("job").innerText = "Poste :" + userData.job;
+                    document.getElementById("tel").innerText = "Téléphone :" + userData.tel;
+                    document.getElementById("email").innerText ="Email :" + userData.mail
+                    document.getElementById("password").innerText ="Mot de passe :" +userData.password;
+            }
+        
+            document.getElementById("editBtn").addEventListener("click", () => {
+                const userData = JSON.parse(localStorage.getItem("userData"));
+                    if (!userData) return;
+
+                document.getElementById("editphoto").Value=userData.photo || "";
+                document.getElementById("editnom").value=userData.nom;
+                document.getElementById("editpostnom").Value =  userData.postnom;
+                document.getElementById("editprenom").Value = userData.prenom; 
+                document.getElementById("editfirm").Value = userData.firm;
+                document.getElementById("editjob").Value = userData.job;
+                document.getElementById("edittel").Value = userData.tel;
+                document.getElementById("editemail").Value = userData.mail;
+                document.getElementById("editpassword").Value = userData.password;
+                document.getElementById("editForm").style.display = "block";
+            });
+            document.getElementById("saveChanges").addEventListener("click", () =>{
+                const photo = document.getElementById("editphoto").files[0];
+                const nom = document.getElementById("editnom").value ;
+                const postnom =   document.getElementById("editpostnom").value ;
+                const prenom =   document.getElementById("editprenom").value ; 
+                const firm =  document.getElementById("editfirm").value ;
+                const job =   document.getElementById("editjob").value ;
+                const tel =   document.getElementById("edittel").value ;
+                const mail =   document.getElementById("editemail").value;
+                const password =   document.getElementById("editpassword").Value ;
+                const savedata = (photoBase64) => {
+                    const updateUser = {
+                        nom,
+                        postnom,
+                        prenom,
+                        firm,
+                        job,
+                        tel,
+                        mail,
+                        password,
+                        photo: photoBase64,
                     };
-                localStorage.setItem('Utilisateur', JSON.stringify(userData));    
-                if (file) {
-                    reader.readAsDataURL(file);
+                    localStorage.setItem("userData", JSON.stringify(updateUser));
+                    alert("Informations mises à jour.");
+                    location.reload();
+                };
+                if (photo) {
+                    const reader = new FileReader();
+                    reader.onload = () => savedata(reader.result);
+                    reader.readAsDataURL(photo);
                 }
                 else {
-                    alert('Veuillez sélectionner une photo.');
+                    const userData = JSON.parse(localStorage.getItem("userData"));
+                    savedata(userData.photo || "")
                 }
-                });
-            const userData = JSON.parse(localStorage.getItem('Utilisateur'));
-            if (userData) {
-                document.querySelector('#nom').textContent = userData.Nom;
-                document.querySelector('#postnom').textContent = userData.Postnom;
-                document.querySelector('#prenom').textContent = userData.Prenom;
-                document.querySelector('#firm').textContent = userData.Entreprise;
-                document.querySelector('#job').textContent = userData.poste;
-                document.querySelector('#tel').textContent = userData.Téléphone;
-                document.querySelector('#mail').textContent = userData.mail;
-                document.querySelector('#password').textContent = userData.Motdepasse;
+            });
+            window.onload = loadProfile;
+            window.location.href = 'profil.html'; 
+                        
+                
 
-                const photoElement = document.querySelector('#photo');
-                if (userData.Photo) {
-                    photoElement.src = userData.Photo;
-                }
-            }
-
+            
+                
         </script>
     </body>
 </html>

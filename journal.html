@@ -3,11 +3,34 @@
 
     <head>
         <meta charset="UTF-8">
-        <title>DigitCarte</title>
+        <title>Journal des contacts et scan</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
         <a href="index.html" class="retour"> <i class="fas fa-arrow-left"></i> Retour</a>
+        <h2>Journal des cartes scannées</h2>
+        <div id="ListeCartes">
+
+        </div>
+        <script>
+            window.onload = function () {
+                const journalDiv = document.getElementById("ListeCartes");
+                const contacts = JSON.parse(localStorage.getItem("contactsScannes")) || [];
+                if(contacts.length === 0) {
+                    journalDiv.innerHTML = "<p> Aucun contact scanné pour l'instant </p>";
+                    return;
+                }
+                contacts.forEach((contact, index) => {
+                    const card = document.createElement("div");
+                    card.className = "contact-card";
+                    card.innerHTML = ' <h3>Contact ${index +1} </h3>  <p><strong>Nom:</strong>${contact.nom || ""} ${contact.postnom || ""} ${contact.prenom || ""}</p> <p><strong>Email:</strong> ${contact.email || ""}</p> <p><strong>Téléphone :</strong> ${contact.tel || ""}</p> <hr>';
+                    journalDiv.appendChild(card);
+                });
+            };
+        </script>
+    </body>
+    <body>
+        
     </body>
 </html>
